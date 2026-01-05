@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { TransitionLink } from './transition-link'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -22,16 +23,17 @@ export function Navigation() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <nav className="container mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold tracking-tight">
+        <TransitionLink href="/" label="Home" className="text-xl font-bold tracking-tight">
           WebHop
-        </Link>
+        </TransitionLink>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link
+            <TransitionLink
               key={link.href}
               href={link.href}
+              label={link.label}
               className={cn(
                 'text-sm font-medium transition-colors hover:text-foreground',
                 pathname === link.href
@@ -40,10 +42,10 @@ export function Navigation() {
               )}
             >
               {link.label}
-            </Link>
+            </TransitionLink>
           ))}
           <Button asChild>
-            <Link href="/contact">Get a Free Quote</Link>
+            <TransitionLink href="/contact" label="Contact">Get a Free Quote</TransitionLink>
           </Button>
         </div>
 
@@ -68,9 +70,10 @@ export function Navigation() {
           >
             <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
-                <Link
+                <TransitionLink
                   key={link.href}
                   href={link.href}
+                  label={link.label}
                   onClick={() => setIsOpen(false)}
                   className={cn(
                     'text-sm font-medium py-2 transition-colors',
@@ -80,12 +83,12 @@ export function Navigation() {
                   )}
                 >
                   {link.label}
-                </Link>
+                </TransitionLink>
               ))}
               <Button asChild className="w-full mt-2">
-                <Link href="/contact" onClick={() => setIsOpen(false)}>
+                <TransitionLink href="/contact" label="Contact" onClick={() => setIsOpen(false)}>
                   Get a Free Quote
-                </Link>
+                </TransitionLink>
               </Button>
             </div>
           </motion.div>
