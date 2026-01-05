@@ -13,67 +13,40 @@ const categories = ['All', 'Cafe', 'Restaurant', 'Gym', 'Services']
 const projects = [
   {
     id: 1,
-    title: 'Brew & Bites Cafe',
-    category: 'Cafe',
-    description: 'A modern website for a specialty coffee shop in Mumbai, featuring online menu and WhatsApp ordering.',
-    image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop',
+    title: 'Ferry Wharf',
+    category: 'Restaurant',
+    description: 'A modern website for a seafood restaurant in Mumbai, featuring online menu.',
+    image: '/projects/ferry_wharf.png',
     results: ['40% increase in new customers', '3x online orders'],
-    tags: ['Web Design', 'WhatsApp Bot', 'SEO'],
+    tags: ['Modern Web Design', 'SEO'],
+    url: 'https://ferrywharf.vercel.app/',
   },
   {
     id: 2,
-    title: 'FitZone Gym',
-    category: 'Gym',
-    description: 'Complete digital presence for a fitness center with membership sign-up and class scheduling.',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop',
-    results: ['2x membership sign-ups', '50% reduction in phone inquiries'],
+    title: "Sang's Home Bakery",
+    category: 'Bakery',
+    description: 'A modern website for a home bakery in Mumbai, featuring online menu and whatsapp orderering.',
+    image: '/projects/sang_bakery.png',
+    results: ['50% increase in online orders', '2x sales'],
     tags: ['Web Design', 'CRM Integration', 'Booking System'],
+    url: 'https://sangshomebakery.vercel.app/',
   },
   {
     id: 3,
-    title: 'Spice Garden Restaurant',
-    category: 'Restaurant',
-    description: 'Elegant website for a fine dining restaurant with online reservations and menu showcase.',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop',
-    results: ['60% more online reservations', '35% increase in weekend bookings'],
-    tags: ['Web Design', 'Reservation System', 'SEO'],
-  },
-  {
-    id: 4,
-    title: 'Urban Cuts Salon',
-    category: 'Services',
-    description: 'Stylish booking website for a hair salon with appointment scheduling and service showcase.',
-    image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&h=400&fit=crop',
-    results: ['70% online bookings', '25% more new clients'],
-    tags: ['Web Design', 'Booking System', 'WhatsApp Bot'],
-  },
-  {
-    id: 5,
-    title: 'The Coffee House',
-    category: 'Cafe',
-    description: 'Cozy cafe website with loyalty program integration and event calendar.',
-    image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&h=400&fit=crop',
-    results: ['500+ loyalty members', '45% repeat customers'],
-    tags: ['Web Design', 'Loyalty Program', 'Analytics'],
-  },
-  {
-    id: 6,
-    title: 'Iron Temple Fitness',
-    category: 'Gym',
-    description: 'Powerful website for a bodybuilding gym with trainer profiles and progress tracking.',
-    image: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&h=400&fit=crop',
-    results: ['80% trial-to-member conversion', '3x social media traffic'],
-    tags: ['Web Design', 'Member Portal', 'SEO'],
+    title: 'GM Machinery',
+    category: 'Manufacturing',
+    description: 'Online presence for a machinery company with product showcase and contact form.',
+    image: '/projects/gm_machinery.png',
+    results: ['2x membership sign-ups', '50% reduction in phone inquiries'],
+    tags: ['Web Design', 'CRM Integration', 'Booking System'],
+    url: 'https://gm-machinery.vercel.app/',
   },
 ]
 
 const clientLogos = [
-  { name: 'Brew & Bites', initial: 'BB' },
-  { name: 'FitZone', initial: 'FZ' },
-  { name: 'Spice Garden', initial: 'SG' },
-  { name: 'Urban Cuts', initial: 'UC' },
-  { name: 'Coffee House', initial: 'CH' },
-  { name: 'Iron Temple', initial: 'IT' },
+  { name: 'Ferry Wharf', initial: 'FW' },
+  { name: 'Sang Home Bakery', initial: 'SHB' },
+  { name: 'GM Machinery', initial: 'GM' },
 ]
 
 export default function PortfolioPage() {
@@ -98,7 +71,7 @@ export default function PortfolioPage() {
               Our Portfolio
             </h1>
             <p className="text-lg text-muted-foreground">
-              Real projects. Real results. See how we have helped local businesses 
+              Real projects. Real results. See how we have helped local businesses
               establish their online presence and grow their customer base.
             </p>
           </motion.div>
@@ -106,7 +79,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Client Logos */}
-      <section className="py-12 bg-card border-y border-border">
+      {/* <section className="py-12 bg-card border-y border-border">
         <div className="container mx-auto px-6">
           <p className="text-center text-sm text-muted-foreground mb-8">Trusted by local businesses</p>
           <div className="flex flex-wrap justify-center gap-8">
@@ -120,10 +93,10 @@ export default function PortfolioPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Filters */}
-      <section className="py-12 bg-background sticky top-16 z-40 border-b border-border">
+      {/* <section className="py-12 bg-background sticky top-16 z-40 border-b border-border">
         <div className="container mx-auto px-6">
           <div className="flex flex-wrap justify-center gap-2">
             {categories.map((category) => (
@@ -138,7 +111,7 @@ export default function PortfolioPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Projects Grid */}
       <section className="py-24 bg-background">
@@ -159,7 +132,10 @@ export default function PortfolioPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <Card className="h-full bg-card border-border overflow-hidden group hover:border-primary/50 transition-colors">
+                  <Card
+                    className="h-full bg-card border-border overflow-hidden group hover:border-primary/50 transition-colors cursor-pointer"
+                    onClick={() => window.open(project.url, '_blank')}
+                  >
                     <div className="aspect-video overflow-hidden relative">
                       <img
                         src={project.image}
@@ -179,7 +155,7 @@ export default function PortfolioPage() {
                       </div>
                       <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                       <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
-                      
+
                       <div className="space-y-2 mb-4">
                         {project.results.map((result) => (
                           <div key={result} className="text-sm font-medium text-primary">
