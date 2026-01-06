@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Clock, CheckCircle, Send } from 'lucide-react'
+import { Mail, Phone, MapPin, CheckCircle, Send, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -84,18 +84,41 @@ export default function ContactPage() {
     business: '',
     message: '',
     budget: '',
+    contactMethod: 'email', // New field for contact preference
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setFormStatus('submitting')
     
-    // Simulate form submission
+    // Check if user wants WhatsApp contact
+    if (formData.contactMethod === 'whatsapp') {
+      handleWhatsAppSubmit()
+      return
+    }
+
+    // Simulate form submission for email
     await new Promise(resolve => setTimeout(resolve, 1500))
     
     setFormStatus('success')
     // In production, you would send this to your backend/email service
     console.log('Form submitted:', formData)
+  }
+
+  const handleWhatsAppSubmit = () => {
+    // Create WhatsApp message from form data
+    const message = `Hi, my name is ${formData.name}.${formData.email ? `\nEmail: ${formData.email}` : ''}${formData.phone ? `\nPhone: ${formData.phone}` : ''}${formData.business ? `\nBusiness: ${formData.business}` : ''}${formData.budget ? `\nBudget: ${formData.budget}` : ''}\n\nProject Details:\n${formData.message || 'I\'m looking for web services. Please contact me.'}`
+    
+    const cleanNumber = '+918882655977'.replace(/\D/g, '')
+    const encodedMessage = encodeURIComponent(message)
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+    
+    const whatsappUrl = isMobile
+      ? `whatsapp://send?phone=${cleanNumber}&text=${encodedMessage}`
+      : `https://web.whatsapp.com/send?phone=${cleanNumber}&text=${encodedMessage}`
+    
+    window.open(whatsappUrl, '_blank')
+    setFormStatus('success')
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -236,6 +259,37 @@ export default function ContactPage() {
                         />
                       </div>
 
+                      <div className="space-y-2">
+                        <Label>Preferred Contact Method</Label>
+                        <div className="flex gap-4">
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="radio"
+                              name="contactMethod"
+                              value="email"
+                              checked={formData.contactMethod === 'email'}
+                              onChange={handleChange}
+                              className="w-4 h-4 text-primary"
+                            />
+                            <span className="text-sm">Email</span>
+                          </label>
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="radio"
+                              name="contactMethod"
+                              value="whatsapp"
+                              checked={formData.contactMethod === 'whatsapp'}
+                              onChange={handleChange}
+                              className="w-4 h-4 text-primary"
+                            />
+                            <span className="flex items-center gap-1 text-sm">
+                              <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                              WhatsApp
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+
                       <Button
                         type="submit"
                         className="w-full"
@@ -244,12 +298,21 @@ export default function ContactPage() {
                         {formStatus === 'submitting' ? (
                           <>
                             <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin mr-2" />
-                            Sending...
+                            {formData.contactMethod === 'whatsapp' ? 'Opening WhatsApp...' : 'Sending...'}
                           </>
                         ) : (
                           <>
-                            <Send className="w-4 h-4 mr-2" />
-                            Send Message
+                            {formData.contactMethod === 'whatsapp' ? (
+                              <>
+                                <MessageCircle className="w-4 h-4 mr-2" />
+                                Contact via WhatsApp
+                              </>
+                            ) : (
+                              <>
+                                <Send className="w-4 h-4 mr-2" />
+                                Send Message
+                              </>
+                            )}
                           </>
                         )}
                       </Button>

@@ -25,12 +25,12 @@ export function HeroSection() {
               Trusted by 50+ Local Businesses
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
               We Build Websites That Help Local Businesses{' '}
               <span className="text-primary">Grow</span>
             </h1>
             
-            <p className="mt-6 text-lg text-muted-foreground max-w-lg">
+            <p className="mt-6 text-xl text-muted-foreground max-w-lg leading-relaxed">
               High-converting, mobile-first websites for cafes, gyms, restaurants, 
               and service businesses. Get more customers with a website that works.
             </p>
@@ -49,17 +49,17 @@ export function HeroSection() {
 
             <div className="mt-12 flex items-center gap-8">
               <div>
-                <div className="text-3xl font-bold">50+</div>
+                <div className="text-4xl font-bold">50+</div>
                 <div className="text-sm text-muted-foreground">Projects Delivered</div>
               </div>
               <div className="w-px h-12 bg-border" />
               <div>
-                <div className="text-3xl font-bold">98%</div>
+                <div className="text-4xl font-bold">98%</div>
                 <div className="text-sm text-muted-foreground">Client Satisfaction</div>
               </div>
               <div className="w-px h-12 bg-border" />
               <div>
-                <div className="text-3xl font-bold">3x</div>
+                <div className="text-4xl font-bold">3x</div>
                 <div className="text-sm text-muted-foreground">Average Lead Growth</div>
               </div>
             </div>
@@ -70,7 +70,7 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative h-[400px] lg:h-[600px] hidden lg:block"
+            className="relative h-100 lg:h-150 hidden lg:block"
           >
             <div className="absolute inset-0 rounded-2xl overflow-hidden bg-card/50">
               <SplineScene 
